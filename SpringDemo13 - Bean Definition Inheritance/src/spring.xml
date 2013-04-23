@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	
+    <!--
+    <bean id="parenttriangle" class="com.osgo.Triangle" >
+	    <property name="pointA" ref="pointA" />
+	</bean>
+	-->
+	
+    <bean id="parenttriangle" class="com.osgo.Triangle" abstract="true" >
+	    <property name="points">
+	        <list>
+	            <ref bean="pointA" />
+	        </list>
+	    </property>
+	</bean>
+	
+	
+    <bean id="triangle1" class="com.osgo.Triangle" parent="parenttriangle">
+	    <property name="points">
+	        <list>
+	            <ref bean="pointB" />
+	        </list>
+	    </property>
+	</bean>
+	
+    
+	<!-- <bean id="triangle1" class="com.osgo.Triangle" parent="parenttriangle">
+	    <property name="pointB" ref="pointB" />
+	    <property name="pointC" ref="pointC" />
+	</bean> -->
+	
+	<bean id="triangle2" class="com.osgo.Triangle" parent="parenttriangle">
+	    <property name="pointB" ref="pointB" />
+	</bean>																	<!-- this will give a NullPointerException for pointC -->
+	    
+	<bean id="pointA" class="com.osgo.Point">
+		<property name="x" value ="0" />
+	  	<property name="y" value ="0" />  
+	</bean>
+		
+	<bean id="pointB" class="com.osgo.Point">
+		<property name="x" value ="-20" />
+	    <property name="y" value ="0" />  
+	</bean>
+		
+	<bean id="pointC" class="com.osgo.Point">
+	    <property name="x" value ="0" />
+	    <property name="y" value ="20" />  
+	</bean>
+	    		
+</beans>
